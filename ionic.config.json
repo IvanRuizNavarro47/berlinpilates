@@ -1,0 +1,7 @@
+{
+  "name": "berlinpilates",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
