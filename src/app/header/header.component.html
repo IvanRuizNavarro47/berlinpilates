@@ -1,0 +1,45 @@
+<ion-menu contentId="main-content" menuId="menu-derecho" side="end">
+  <!-- Contenido del menú lateral derecho -->
+  <ion-content>
+    <ion-list>
+      <ion-item href="/monitor">Monitores</ion-item>
+      <ion-item href="/clase">Clases</ion-item>
+      <ion-item href="/entrenador-personal">Entrenador Personal</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-menu contentId="main-content" menuId="menu-izquierdo" side="start">
+  <!-- Contenido del Menú Lateral Izquierdo -->
+  <ion-content>
+    <!-- Enlaces o elementos del menú -->
+    <ion-list>
+      <ion-item *ngIf="!logueado" href="login">Login</ion-item>
+      <ion-item *ngIf="logueado">Perfil</ion-item>
+      <ion-item *ngIf="logueado">Mis Clases</ion-item>
+      <ion-item *ngIf="logueado" href="abono">Mi Abono</ion-item>
+      <ion-item *ngIf="logueado" (click)="logout()">Logout</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-izquierdo" >
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-item href="/home">
+      <ion-img class="logo" src="https://th.bing.com/th/id/OIG3.Jiyzk.weRYVX.UU4.zDr?w=1024&h=1024&rs=1&pid=ImgDetMain" style="width:8vw"></ion-img>
+    </ion-item>
+
+    <!-- Menú lateral de hamburguesa a la derecha -->
+    <ion-buttons slot="end">
+      <ion-menu-button menu="menu-derecho"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
