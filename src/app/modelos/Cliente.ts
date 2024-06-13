@@ -1,12 +1,17 @@
-import {Usuario} from "./Usuario";
+import { Usuario } from "./Usuario";
 
 
 export class Cliente{
   id?:number;
   nombre?:string;
-  apellidos?:string;
+  apellido1?:string;
+  apellido2?:string;
   dni?:string;
-  fechaNacimiento?:string;
+  email?:string;
+  id_usuario?:number;
   usuario?:Usuario;
+
+
+
 
 }
