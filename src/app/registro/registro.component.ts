@@ -19,8 +19,8 @@ export class RegistroComponent implements OnInit {
 
   registroCliente: RegistroCliente = new RegistroCliente();
   nombre: string = '';
-  apellidoprimero: string = '';
-  apellidosegundo: string = '';
+  apellido1: string = '';
+  apellido2: string = '';
   dni: string = '';
   email: string = '';
   username: string = '';
@@ -51,8 +51,8 @@ export class RegistroComponent implements OnInit {
 
   rellenarDatos() {
     this.registroCliente.nombre = this.nombre;
-    this.registroCliente.apellidoprimero= this.apellidoprimero;
-    this.registroCliente.apellidosegundo= this.apellidosegundo;
+    this.registroCliente.apellido1= this.apellido1;
+    this.registroCliente.apellido2= this.apellido2;
     this.registroCliente.dni = this.dni;
     this.registroCliente.email = this.email;
     this.registroCliente.username = this.username;

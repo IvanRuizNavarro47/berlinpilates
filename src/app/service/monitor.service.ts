@@ -3,13 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Monitor} from "../modelos/Monitor";
 import {LoginService} from "./login.service";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MonitorService {
 
-  private apiUrl = '/api/monitor';
+  private apiUrl = environment.apiUrl + '/monitores';
 
   constructor(private http: HttpClient, private loginService:LoginService) {}
 

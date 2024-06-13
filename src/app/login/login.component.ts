@@ -1,31 +1,28 @@
-import {Component, OnInit} from '@angular/core';
-import {IonicModule} from "@ionic/angular";
-import {FormsModule} from "@angular/forms";
-import {keyOutline, personOutline} from "ionicons/icons";
-import {addIcons} from "ionicons";
-import {Login} from "../modelos/Login";
-import {LoginService} from "../service/login.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import { keyOutline, personOutline } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+import { Login } from '../modelos/Login';
+import { LoginService } from '../service/login.service';
+import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @Component({
-  
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports:[IonicModule, FormsModule, HttpClientModule],
-  providers:[LoginService]
+  imports: [IonicModule, FormsModule, HttpClientModule],
+  providers: [LoginService]
 })
-export class LoginComponent implements  OnInit {
-
+export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
-  login:Login =  new Login();
+  login: Login = new Login();
 
   constructor(private service: LoginService, private router: Router) {
-    addIcons({personOutline, keyOutline})
+    addIcons({ personOutline, keyOutline });
     localStorage.clear();
   }
 
@@ -35,22 +32,20 @@ export class LoginComponent implements  OnInit {
     this.service.login(this.login).subscribe({
       next: (respuesta) => {
         console.log(respuesta);
-        if(respuesta.token != null){
-          localStorage.setItem('token' , respuesta.token);
-          localStorage.setItem('username', this.username),
+        if (respuesta.token) {
+          localStorage.setItem('token', respuesta.token);
+          localStorage.setItem('username', this.username);
           this.router.navigate(['home']);
+        } else {
+          console.error('Token es null o undefined');
         }
-
       },
       error: (e) => console.error(e),
-
     });
   }
 
   ngOnInit(): void {
-    this.username='';
-    this.password='';
+    this.username = '';
+    this.password = '';
   }
-
-
 }
