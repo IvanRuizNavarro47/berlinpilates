@@ -15,7 +15,7 @@ export class LoginService {
   private Localhost= "http://localhost:8080/"
 
   private apiLoginUrl = 'auth/login';
-  private apiRegistroUrl = '/auth/register';
+  private apiRegistroUrl = 'auth/register';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -33,7 +33,7 @@ export class LoginService {
   }
 
   registrarCliente(data:RegistroCliente): Observable<any>{
-    return this.http.post(this.apiRegistroUrl, data);
+    return this.http.post(`${this.Localhost}${this.apiRegistroUrl}`, data);
   }
 
   logout(){
