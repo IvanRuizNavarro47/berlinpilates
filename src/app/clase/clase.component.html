@@ -1,13 +1,20 @@
-<div *ngIf="clases.length > 0">
-  <h2>Listado de Clases</h2>
-  <ul>
-    <li *ngFor="let clase of clases">
-      <strong>{{ clases.ti`po }}</strong>
-      <p>{{ clase.descripcion }}</p>
-      <!-- Otros campos de la clase que quieras mostrar -->
-    </li>
-  </ul>
-</div>
-<div *ngIf="clases.length === 0">
-  <p>No hay clases disponibles actualmente.</p>
+<!-- clase.component.html -->
+
+  <app-header></app-header>
+
+<div class="clases-container">
+  <div *ngIf="clases.length > 0">
+    <h2 class="clases-title">Listado de Clases</h2>
+    <ul class="clases-list">
+      <li *ngFor="let clase of clases" class="clase-item">
+        <p>{{ clase.tipoClase ? getTipoClaseAsString(clase.tipoClase) : 'No especificado' }}</p>
+        <p>{{ clase.descripcion }}</p>
+        <p>Capacidad máxima: {{ clase.capacidadMaxima }}</p>
+        <p>{{ clase.fecha }}</p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="clases.length === 0" class="no-clases-message">
+    <p>No hay clases disponibles actualmente.</p>
+  </div>
 </div>

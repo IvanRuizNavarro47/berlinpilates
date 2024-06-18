@@ -33,6 +33,8 @@ export class ClaseService {
   }
 
 
+  
+
   borrarse(idClase:number): Observable<any>{
     const options = this.loginService.autorizarPeticion();
 
