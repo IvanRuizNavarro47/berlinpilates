@@ -5,8 +5,8 @@ import {ClaseComponent} from "./clase/clase.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistroComponent} from "./registro/registro.component";
 import {ErrorComponent} from "./error/error.component";
-import {AbonoComponent} from "./abono/abono.component";
 import {EntrenadorPersonalComponent} from "./entrenador-personal/entrenador-personal.component";
+import { MisclasesComponent } from './misclases/misclases.component';
 
 export const routes: Routes = [
   {path: 'home',component:HomePage,},
@@ -15,7 +15,7 @@ export const routes: Routes = [
   {path: 'clase',component:ClaseComponent},
   {path: 'login',component:LoginComponent},
   {path: 'registro',component:RegistroComponent},
-  {path: 'abono',component:AbonoComponent},
+  {path: 'misclases',component:MisclasesComponent},
   {path: 'error',component:ErrorComponent},
   {path: 'entrenador-personal',component:EntrenadorPersonalComponent},
 ];

@@ -1,12 +1,15 @@
-import {Monitor} from "./Monitor";
-import {Cliente} from "./Cliente";
+// modelos/Clase.ts
 
+export enum TipoClase {
+  PILATES_SUELO = 'PILATES_SUELO',
+  PILATES_MAQUINA = 'PILATES_MAQUINA'
+}
 
-export class Clase{
-  id?:number;
-  tipo?:string;
-  descripcion?:string;
-  capacidad_max?:number;
-  fecha?:Date;
-
+export interface Clase {
+  id?: number;
+  tipoClase?: TipoClase;  // Actualizado para coincidir con el backend
+  descripcion?: string;
+  capacidadMaxima?: number;  // Actualizado para coincidir con el backend
+  fecha?: Date;
+  clientes?: any[];  // Si necesitas manejar los clientes también
 }

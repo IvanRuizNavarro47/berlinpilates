@@ -16,8 +16,7 @@
     <ion-list>
       <ion-item *ngIf="!logueado" href="login">Login</ion-item>
       <ion-item *ngIf="logueado">Perfil</ion-item>
-      <ion-item *ngIf="logueado">Mis Clases</ion-item>
-      <ion-item *ngIf="logueado" href="abono">Mi Abono</ion-item>
+      <ion-item *ngIf="logueado" href="misclases">Mis Clases</ion-item>
       <ion-item *ngIf="logueado" (click)="logout()">Logout</ion-item>
     </ion-list>
   </ion-content>
