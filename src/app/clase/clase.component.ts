@@ -34,136 +34,21 @@ import {Router} from "@angular/router";
 })
 export class ClaseComponent implements OnInit {
 
-  clases: any = []
-  fechaFormateada: any;
-  fechaInicio: any;
-  fechaFin: any;
-  monitorSeleccionado: Monitor;
-  mostrarModal: boolean;
-  asistentes: Cliente[];
+  clases: Clase[] = [];
 
-  constructor(private service: ClaseService, private datepipe: DatePipe,
-              private toastController: ToastController, private  router: Router) {
-    this.formatear(new Date());
-    this.rellenarInicioYFin(new Date());
-    this.monitorSeleccionado = new Monitor();
-    this.mostrarModal = false;
-    this.asistentes = [];
-    addIcons({
-      alarmOutline,
-      peopleOutline,
-      hourglassOutline,
-      calendarOutline,
-      accessibilityOutline,
-      people,
-      personCircleOutline,
-      happyOutline,
-      sadOutline,
-      closeOutline,
-      eyeOutline
-    })
-
-  }
+  constructor(private claseService: ClaseService) { }
 
   ngOnInit(): void {
-    this.cargarClases();
-  }
-
-  enviarFechaAlServidor(event: CustomEvent) {
-    const nuevaFecha: Date = new Date(event.detail.value);
-    this.formatear(nuevaFecha);
-    this.rellenarInicioYFin(nuevaFecha);
-    this.cargarClases();
-  }
-
-  formatear(fecha: Date) {
-    this.fechaFormateada = this.datepipe.transform(fecha, 'yyyy-MM-dd');
-  }
-
-
-  rellenarInicioYFin(fecha: Date) {
-
-    // Obtener el primer día del mes
-    this.fechaInicio = this.datepipe.transform(new Date(fecha.getFullYear(), fecha.getMonth(), 1), 'yyyy-MM-dd');
-
-    // Obtener el último día del mes
-    this.fechaFin = this.datepipe.transform(new Date(fecha.getFullYear(), fecha.getMonth() + 1, 0), 'yyyy-MM-dd');
-
-  }
-
-  asistirAClase(idClase: number) {
-    this.service.asitir(idClase).subscribe({
-      next: (d) => console.log(d),
-      error: (e) => {
-        console.error(e);
-        this.router.navigate( ["error"]);
+    this.claseService.getAllClases().subscribe(
+      (data) => {
+        this.clases = data;
+        console.log(this.clases); // Aquí puedes verificar en la consola que se han cargado las clases correctamente
       },
-      complete: () => {
-        this.mostrarMensaje("Se ha completado tu inscripción a la clase","primary","happy-outline");
-        this.cargarClases();
+      (error) => {
+        console.error('Error al cargar las clases:', error);
+        // Aquí puedes manejar el error como prefieras (mostrar un mensaje al usuario, etc.)
       }
-    });
-  }
-
-  borrarseDeClase(idClase: number) {
-    this.service.borrarse(idClase).subscribe({
-      next: (d) => console.log(d),
-      error: (e) => {
-        console.error(e);
-        this.router.navigate( ["error"]);
-      },
-      complete: () => {
-        this.mostrarMensaje("Te has borrado de la clase correctamente","danger","sad-outline");
-        this.cargarClases();
-      }
-    });
-  }
-
-  comprobarIncripcion(clase:Clase):boolean {
-    let usernameLoged = localStorage.getItem('username');
-    return <boolean>clase.clientes?.some(c => c.usuario?.username === usernameLoged);
-
-  }
-
-  cargarClases(){
-    this.service.obtenerPorFecha(this.fechaFormateada).subscribe({
-      next: (d) => {
-        d.forEach(c => c.fecha = new Date(c.fecha));
-        this.clases = d.sort((a, b) => a.fecha - b.fecha);
-      },
-      error: (e) => {
-        console.error(e);
-        this.router.navigate( ["error"]);
-      },
-      complete: () => console.info("Éxito")
-    });
-  }
-
-
-
-  async mostrarMensaje(mensaje:string, color:string, icon:string) {
-
-    const toast = await this.toastController.create({
-      message: mensaje,
-      duration: 2000, // Duración en milisegundos
-      position: 'top', // Posición del toast (top, middle, bottom)
-      cssClass: 'custom-toast', // clase css
-      icon:icon,
-      animated: true,
-      color: color
-    });
-
-    toast.present();
-  }
-
-  mostrarDatosMonitor(c: Clase){
-    if (c.monitor) {
-      this.monitorSeleccionado = c.monitor;
-    }
-    if (c.clientes) {
-      this.asistentes = c.clientes;
-    }
-    this.mostrarModal= true;
+    );
   }
 
 }

@@ -5,9 +5,9 @@ import {
   HttpEvent,
   HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import {catchError, Observable, throwError} from 'rxjs';
-import {LoginService} from "../service/login.service";
-import {Router} from "@angular/router";
+import { catchError, Observable, throwError } from 'rxjs';
+import { LoginService } from "../service/login.service";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -15,12 +15,20 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private loginService: LoginService, private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = localStorage.getItem('token');
+    if (token) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           this.loginService.logout();
           this.router.navigate(['/login']);
-        }else if (error.status === 403){
+        } else if (error.status === 403) {
           this.router.navigate(['/error']);
         }
         return throwError(error);
