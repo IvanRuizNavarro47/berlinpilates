@@ -7,6 +7,8 @@ import {RegistroComponent} from "./registro/registro.component";
 import {ErrorComponent} from "./error/error.component";
 import {EntrenadorPersonalComponent} from "./entrenador-personal/entrenador-personal.component";
 import { MisclasesComponent } from './misclases/misclases.component';
+import { InstalacionesComponent } from './instalaciones/instalaciones.component';
+import { NoticiasComponent } from './noticias/noticias.component';
 
 export const routes: Routes = [
   {path: 'home',component:HomePage,},
@@ -17,5 +19,8 @@ export const routes: Routes = [
   {path: 'registro',component:RegistroComponent},
   {path: 'misclases',component:MisclasesComponent},
   {path: 'error',component:ErrorComponent},
-  {path: 'entrenador-personal',component:EntrenadorPersonalComponent},
+  {path: 'instalaciones',component:InstalacionesComponent},
+  {path: 'noticias',component:NoticiasComponent}
+
+
 ];
