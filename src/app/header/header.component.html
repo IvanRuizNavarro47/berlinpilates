@@ -3,8 +3,10 @@
   <ion-content>
     <ion-list>
       <ion-item href="/monitor">Monitores</ion-item>
-      <ion-item href="/clase">Clases</ion-item>
-      <ion-item href="/entrenador-personal">Entrenador Personal</ion-item>
+      <ion-item *ngIf="logueado" href="/clase">Clases</ion-item>
+      <ion-item href="/instalaciones">Nuestras instalaciones</ion-item>
+      <ion-item *ngIf="logueado" href="noticias">Noticias</ion-item>
+
     </ion-list>
   </ion-content>
 </ion-menu>
@@ -15,7 +17,6 @@
     <!-- Enlaces o elementos del menú -->
     <ion-list>
       <ion-item *ngIf="!logueado" href="login">Login</ion-item>
-      <ion-item *ngIf="logueado">Perfil</ion-item>
       <ion-item *ngIf="logueado" href="misclases">Mis Clases</ion-item>
       <ion-item *ngIf="logueado" (click)="logout()">Logout</ion-item>
     </ion-list>

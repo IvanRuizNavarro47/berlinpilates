@@ -1,0 +1,68 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 14%;
+    background-color: #333; // Fondo gris oscuro
+    padding: 20px 0;
+    text-align: center;
+    border-top: 2px solid #555; // Borde superior gris medio
+    color: #fff; // Texto en blanco
+    
+  }
+  
+  .footer .container {
+    
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .content {
+    min-height: 100vh; /* Al menos el 100% del viewport height */
+    position: relative; /* Importante para el footer fijo */
+    padding-bottom: 80px; /* Ajusta según el tamaño del footer */
+  }
+  
+  .footer p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #ddd; // Texto en gris claro
+  }
+  
+  ion-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  ion-item {
+    margin: 0 10px;
+    color: #fff; // Texto en blanco
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 5px;
+  }
+  
+  ion-item::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #fff; // Línea de subrayado en blanco
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  ion-item:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  

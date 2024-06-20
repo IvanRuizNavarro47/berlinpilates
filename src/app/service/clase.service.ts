@@ -44,7 +44,13 @@ export class ClaseService {
 
   }
 
+  createClase(clase: Clase): Observable<Clase> {
+    return this.http.post<Clase>(`${this.apiUrl}/crear`, clase);
+  }
 
+  deleteClase(claseId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${claseId}`);
+  }
 
 
 }

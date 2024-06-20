@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -14,18 +14,20 @@ import {
 import {HeaderComponent} from "../header/header.component";
 import { FooterComponent } from '../footer/footer.component';
 
-
-
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-instalaciones',
+  templateUrl: './instalaciones.component.html',
+  styleUrls: ['./instalaciones.component.scss'],
   standalone: true,
   imports: [IonApp,IonMenu,IonHeader, IonList,IonItem,
     IonRouterOutlet,IonMenuButton,IonToolbar, IonTitle,
     IonContent, IonButtons, IonButton, IonIcon, IonImg,
     IonGrid, IonRow, IonCol, IonLabel, HeaderComponent, FooterComponent],
 })
-export class HomePage {
-  constructor() {}
+export class InstalacionesComponent  implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {}
+
 }

@@ -7,13 +7,14 @@ import { HeaderComponent } from "../header/header.component";
 import { ClaseService } from "../service/clase.service";
 import { FormsModule } from "@angular/forms";
 import { Clase, TipoClase } from "../modelos/Clase";
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-clase',
   templateUrl: './clase.component.html',
   styleUrls: ['./clase.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, HeaderComponent, FormsModule],
+  imports: [IonicModule, CommonModule, HeaderComponent, FormsModule, FooterComponent],
   providers: [ClaseService, DatePipe]
 })
 export class ClaseComponent implements OnInit {
@@ -43,6 +44,8 @@ export class ClaseComponent implements OnInit {
     }
   }
 
+  
+
   unirseAClase(claseId: number): void {
     this.claseService.unirseClase(claseId).subscribe(
       () => {
@@ -62,4 +65,6 @@ export class ClaseComponent implements OnInit {
       console.error('ID de clase indefinido.');
     }
   }
+
+
 }
