@@ -1,29 +1,25 @@
 /* clase.component.scss */
 
-/* Establecer altura del contenedor para que ocupe la pantalla completa */
 .clases-container {
-  min-height: 100vh; /* Altura mínima de la ventana visible */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinear contenido desde la parte superior */
+  justify-content: flex-start;
   padding: 20px;
 }
 
-/* Título del listado de clases */
 .clases-title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 15px;
 }
 
-/* Lista de clases */
 .clases-list {
   list-style-type: none;
   padding: 0;
-  margin: 0; /* Eliminar margen de la lista */
+  margin: 0;
 }
 
-/* Estilo de cada elemento de clase */
 .clase-item {
   background-color: #0071b3;
   border-radius: 8px;
@@ -32,15 +28,22 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para los párrafos dentro de cada elemento de clase */
 .clase-item p {
   margin: 5px 0;
   font-size: 16px;
 }
 
-/* Mensaje cuando no hay clases disponibles */
+/* Estilos adicionales para asegurar que el botón sea clicable */
+button {
+  position: relative;
+  z-index: 1000;
+  pointer-events: auto;
+  visibility: visible;
+  display: block;
+}
+
 .no-clases-message {
   font-size: 18px;
   color: #777;
-  margin-top: auto; /* Empujar al fondo si no hay contenido antes */
+  margin-top: auto;
 }

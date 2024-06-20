@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ClaseService {
 
-  private apiUrl = environment.apiUrl; // Asegúrate de tener esto configurado en environment.ts
+  private apiUrl = 'http://localhost:8080/clases'; // Asegúrate de tener esto configurado en environment.ts
 
   constructor(private http: HttpClient, private loginService:LoginService) {}
 
@@ -33,7 +33,9 @@ export class ClaseService {
   }
 
 
-  
+  unirseClase(claseId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${claseId}/unirse`, {});
+  }
 
   borrarse(idClase:number): Observable<any>{
     const options = this.loginService.autorizarPeticion();

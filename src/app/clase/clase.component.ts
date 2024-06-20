@@ -19,17 +19,15 @@ import { Clase, TipoClase } from "../modelos/Clase";
 export class ClaseComponent implements OnInit {
   clases: Clase[] = [];
 
-  constructor(private claseService: ClaseService) { }
+  constructor(private claseService: ClaseService) {}
 
   ngOnInit(): void {
     this.claseService.getAllClases().subscribe(
       (data) => {
         this.clases = data;
-        console.log(this.clases); // Verifica en la consola que se han cargado las clases correctamente
       },
       (error) => {
         console.error('Error al cargar las clases:', error);
-        // Aquí puedes manejar el error como prefieras (mostrar un mensaje al usuario, etc.)
       }
     );
   }
@@ -42,6 +40,26 @@ export class ClaseComponent implements OnInit {
         return 'PILATES_MAQUINA';
       default:
         return 'Desconocido';
+    }
+  }
+
+  unirseAClase(claseId: number): void {
+    this.claseService.unirseClase(claseId).subscribe(
+      () => {
+        console.log('Te has unido a la clase correctamente');
+      },
+      (error) => {
+        console.error('Error al unirse a la clase:', error);
+      }
+    );
+  }
+
+  onButtonClick(claseId: number | undefined): void {
+    if (claseId !== undefined) {
+      console.log('Botón clicado con ID de clase:', claseId);
+      this.unirseAClase(claseId);
+    } else {
+      console.error('ID de clase indefinido.');
     }
   }
 }
