@@ -1,23 +1,27 @@
 <ion-menu contentId="main-content" menuId="menu-derecho" side="end">
-  <!-- Contenido del menú lateral derecho -->
   <ion-content>
     <ion-list>
-      <ion-item href="/monitor">Monitores</ion-item>
-      <ion-item *ngIf="logueado" href="/clase">Clases</ion-item>
-      <ion-item href="/instalaciones">Nuestras instalaciones</ion-item>
-      <ion-item *ngIf="logueado" href="noticias">Noticias</ion-item>
+      <ng-container *ngIf="logueado">
+        <ion-item href="/monitor">Monitores</ion-item>
+        <ion-item *ngIf="isUser" href="/clase">Clases</ion-item>
+        <ion-item href="/instalaciones">Nuestras instalaciones</ion-item>
+        <ion-item href="/noticias">Noticias</ion-item>
 
+        <ion-item *ngIf="isAdmin" href="/gestionCliente">Gestión de Clientes</ion-item>
+        <ion-item *ngIf="isAdmin" href="/gestionClases">Gestión de Clases</ion-item>
+        <ion-item *ngIf="isAdmin" href="/gestionMonitores">Gestión de Monitores</ion-item>
+
+        <ion-item *ngIf="isMonitor" href="/monitor">Monitores</ion-item>
+      </ng-container>
     </ion-list>
   </ion-content>
 </ion-menu>
 
 <ion-menu contentId="main-content" menuId="menu-izquierdo" side="start">
-  <!-- Contenido del Menú Lateral Izquierdo -->
   <ion-content>
-    <!-- Enlaces o elementos del menú -->
     <ion-list>
       <ion-item *ngIf="!logueado" href="login">Login</ion-item>
-      <ion-item *ngIf="logueado" href="misclases">Mis Clases</ion-item>
+      <ion-item *ngIf="logueado && isUser" href="misclases">Mis Clases</ion-item>
       <ion-item *ngIf="logueado" (click)="logout()">Logout</ion-item>
     </ion-list>
   </ion-content>
@@ -28,7 +32,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button menu="menu-izquierdo" >
+      <ion-menu-button menu="menu-izquierdo">
         <ion-icon name="person-outline"></ion-icon>
       </ion-menu-button>
     </ion-buttons>
@@ -37,7 +41,6 @@
       <ion-img class="logo" src="https://th.bing.com/th/id/OIG3.Jiyzk.weRYVX.UU4.zDr?w=1024&h=1024&rs=1&pid=ImgDetMain" style="width:8vw"></ion-img>
     </ion-item>
 
-    <!-- Menú lateral de hamburguesa a la derecha -->
     <ion-buttons slot="end">
       <ion-menu-button menu="menu-derecho"></ion-menu-button>
     </ion-buttons>
