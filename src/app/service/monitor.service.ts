@@ -1,32 +1,18 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Monitor} from "../modelos/Monitor";
-import {LoginService} from "./login.service";
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Cliente } from '../modelos/Cliente'; // Asegúrate de tener el modelo Cliente
 
 @Injectable({
   providedIn: 'root'
 })
 export class MonitorService {
 
-  private apiUrl = environment.apiUrl + '/monitores';
+  private apiUrl = 'http://localhost:8080/cliente'; // Asegúrate de tener esto configurado en environment.ts
 
-  constructor(private http: HttpClient, private loginService:LoginService) {}
+  constructor(private http: HttpClient) {}
 
-  obtenerDatos(): Observable<Monitor[]> {
-    const options = this.loginService.autorizarPeticion();
-    return this.http.get<Monitor[]>(`${this.apiUrl}`, options);
+  getMonitores(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(`${this.apiUrl}/monitores`); // Llama a tu nuevo endpoint
   }
-
-  solitarEntrenadorPersonal(): Observable<Monitor>{
-    const options = this.loginService.autorizarPeticion();
-    return this.http.get<Monitor>(`${this.apiUrl}`+"/personal", options);
-  }
-
-  getEntrenadorPersonal(): Observable<Monitor>{
-    const options = this.loginService.autorizarPeticion();
-    return this.http.get<Monitor>(`${this.apiUrl}`+"/personal/get", options);
-  }
-
 }

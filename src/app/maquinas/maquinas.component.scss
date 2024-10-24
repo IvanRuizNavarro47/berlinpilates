@@ -1,0 +1,80 @@
+html, body {
+  height: 100%; /* Asegúrate de que el HTML y el body ocupen el 100% de la altura */
+  margin: 0; /* Eliminar márgenes por defecto */
+}
+
+.fullscreen {
+  width: 100%;
+  min-height: 100vh; /* Mantener altura mínima para que permita el desplazamiento */
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+  align-items: center;
+  justify-content: flex-start; /* Alinea al inicio, dejando espacio para el desplazamiento */
+  color: rgb(0, 117, 138);
+}
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Ajustar la altura de la imagen de fondo */
+    overflow: hidden; /* Evitar que el contenido se desborde */
+  }
+
+.background-image {
+  position: absolute; /* Posicionamiento absoluto para cubrir el contenedor */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Mantiene la proporción de la imagen */
+  z-index: 0; /* Asegúrate de que la imagen esté detrás de otros elementos */
+}
+
+.title {
+  position: absolute; /* Posicionamiento absoluto para el título */
+  top: 50%; /* Ajusta según necesites */
+  left: 50%; /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Centra el título */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 5vw; /* Adaptativo según el ancho de la pantalla */
+  color: #fff; /* Color del texto */
+  z-index: 1; /* Asegúrate de que esté por encima de la imagen */
+}
+
+.grid-container {
+  display: grid; /* Cambiar a grid para un control más preciso */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Colocar dos en paralelo y ajustarse a tamaños de pantalla */
+  grid-gap: 20px; /* Espacio entre elementos */
+  padding: 20px;
+  width: 100%; /* Asegúrate de que ocupe el 100% del ancho */
+  box-sizing: border-box; /* Para que el padding no afecte el ancho total */
+}
+
+.pilates-machine {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background-color: rgba(47, 128, 123, 0.8); /* Fondo semitransparente */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añadir sombra para profundidad */
+}
+
+.pilates-machine img {
+  max-width: 100%; /* Mantiene el ancho al 100% del contenedor */
+  height: 150px; /* Ajustar la altura para que sean más grandes */
+  object-fit: cover; /* Cubre el área manteniendo la proporción */
+  border-radius: 8px; /* Mantiene el borde redondeado */
+  margin-bottom: 10px;
+}
+
+.pilates-machine h2 {
+  font-size: 1.5rem; /* Ajustar tamaño del título */
+  margin-bottom: 10px;
+  color: aqua;
+}
+
+.pilates-machine p {
+  font-size: 0.9rem; /* Ajustar tamaño del texto */
+  color: #ffffff;
+}
