@@ -1,39 +1,35 @@
-import {Component, OnInit} from '@angular/core';
-import {MonitorService} from "../service/monitor.service";
-import {Monitor} from "../modelos/Monitor";
-import {CommonModule} from "@angular/common";
-import {HeaderComponent} from "../header/header.component";
-import {IonicModule} from "@ionic/angular";
-import {addIcons} from 'ionicons';
-import {calendarNumberOutline, idCardOutline} from "ionicons/icons";
+import { Component, OnInit } from '@angular/core';
+import { IonicModule } from "@ionic/angular";
+import { CommonModule } from "@angular/common";
+import { HeaderComponent } from "../header/header.component";
+import { MonitorService } from "../service/monitor.service"; // Importa tu servicio para monitores
+import { FormsModule } from "@angular/forms";
+import { Cliente } from "../modelos/Cliente"; // Asegúrate de tener el modelo Cliente
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-monitor',
   templateUrl: './monitor.component.html',
   styleUrls: ['./monitor.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, HeaderComponent],
+  imports: [IonicModule, CommonModule, HeaderComponent, FormsModule, FooterComponent],
   providers: [MonitorService]
 })
-export class MonitorComponent  implements OnInit {
+export class MonitorComponent implements OnInit {
+  monitores: Cliente[] = []; // Aquí almacenas la lista de monitores
 
-  monitores: Monitor[] =[];
-  tarjetaVolteada: boolean = false;
-
-  constructor(private service: MonitorService) {
-    addIcons({calendarNumberOutline,idCardOutline})
-  }
+  constructor(private monitorService: MonitorService) {}
 
   ngOnInit(): void {
-    this.service.obtenerDatos().subscribe({
-      next: (d) => this.monitores = d,
-      error: (e) => console.error(e),
-      complete: () => console.info("Éxito")
-    });
+    this.monitorService.getMonitores().subscribe(
+      (data) => {
+        this.monitores = data; // Almacena los monitores en la variable
+      },
+      (error) => {
+        console.error('Error al cargar los monitores:', error);
+      }
+    );
   }
 
-  voltearTarjeta() {
-    this.tarjetaVolteada = !this.tarjetaVolteada;
-  }
-
+  // Puedes añadir métodos adicionales aquí si es necesario
 }
