@@ -1,15 +1,29 @@
 <footer class="footer">
-    <div class="container">
-      <p>&copy; 2024 Ivan. Todos los derechos reservados.</p>
-      <p>Hecho en 2024 en Sevilla</p>
-      <ion-list>
+  <div class="container">
+    <p>&copy; 2024 Ivan. Todos los derechos reservados.</p>
+    <p>Hecho en 2024 en Sevilla</p>
+    <ion-list>
+      <!-- Enlaces para usuarios logueados -->
+      <ng-container *ngIf="logueado">
         <ion-item href="/monitor">Monitores</ion-item>
-        <ion-item *ngIf="logueado" href="/clase">Clases</ion-item>
+        <ion-item *ngIf="isUser" href="/clase">Clases</ion-item>
         <ion-item href="/instalaciones">Nuestras instalaciones</ion-item>
-        <ion-item *ngIf="!logueado" href="login">Login</ion-item>
-        <ion-item *ngIf="logueado" href="misclases">Mis Clases</ion-item>
-        <ion-item *ngIf="logueado" (click)="logout()">Logout</ion-item>
-      </ion-list>
-    </div>
-  </footer>
-  
+        <ion-item href="/noticias">Noticias</ion-item>
+
+        <!-- Opciones adicionales para el rol de administrador -->
+        <ion-item *ngIf="isAdmin" href="/gestionCliente">Gestión de Clientes</ion-item>
+        <ion-item *ngIf="isAdmin" href="/gestionClases">Gestión de Clases</ion-item>
+        <ion-item *ngIf="isAdmin" href="/gestionMonitores">Gestión de Monitores</ion-item>
+
+        <!-- Opciones para el rol de monitor -->
+        <ion-item *ngIf="isMonitor" href="/monitor">Monitores</ion-item>
+        
+        <!-- Opción de logout visible si está logueado -->
+        <ion-item (click)="logout()">Logout</ion-item>
+      </ng-container>
+
+      <!-- Enlace de login si no está logueado -->
+      <ion-item *ngIf="!logueado" href="login">Login</ion-item>
+    </ion-list>
+  </div>
+</footer>

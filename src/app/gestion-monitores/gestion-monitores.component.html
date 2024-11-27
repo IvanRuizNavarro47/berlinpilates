@@ -1,0 +1,52 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="monitor-list">
+    <h1>Lista de Monitores</h1>
+    <ion-list>
+      <ion-item *ngFor="let monitor of monitores">
+        <ion-label>
+          <h2>{{ monitor.nombre }} {{ monitor.apellido1 }} {{ monitor.apellido2 }}</h2>
+          <p>Email: {{ monitor.email }}</p>
+          <p>DNI: {{ monitor.dni }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- Formulario de creación de monitor -->
+  <div>
+    <h2>Crear Nuevo Monitor</h2>
+    <form (ngSubmit)="crearMonitor()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="nuevoMonitor.nombre" name="nombre" required></ion-input>
+      </ion-item>
+
+      <!-- Apellido 1 -->
+      <ion-item>
+        <ion-label position="floating">Apellido 1</ion-label>
+        <ion-input [(ngModel)]="nuevoMonitor.apellido1" name="apellido1" required></ion-input>
+      </ion-item>
+
+      <!-- Apellido 2 -->
+      <ion-item>
+        <ion-label position="floating">Apellido 2</ion-label>
+        <ion-input [(ngModel)]="nuevoMonitor.apellido2" name="apellido2" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">DNI</ion-label>
+        <ion-input [(ngModel)]="nuevoMonitor.dni" name="dni" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="nuevoMonitor.email" name="email" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" type="submit">Crear Monitor</ion-button>
+    </form>
+  </div>
+</ion-content>
+
