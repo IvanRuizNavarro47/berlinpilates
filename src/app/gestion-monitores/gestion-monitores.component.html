@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <ion-content>
   <div class="monitor-list">
     <h1>Lista de Monitores</h1>
@@ -14,39 +12,47 @@
     </ion-list>
   </div>
 
-  <!-- Formulario de creación de monitor -->
-  <div>
-    <h2>Crear Nuevo Monitor</h2>
-    <form (ngSubmit)="crearMonitor()">
-      <ion-item>
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input [(ngModel)]="nuevoMonitor.nombre" name="nombre" required></ion-input>
-      </ion-item>
 
-      <!-- Apellido 1 -->
-      <ion-item>
-        <ion-label position="floating">Apellido 1</ion-label>
-        <ion-input [(ngModel)]="nuevoMonitor.apellido1" name="apellido1" required></ion-input>
-      </ion-item>
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input placeholder="Nombre" [(ngModel)]="nombre"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input placeholder="Username" [(ngModel)]="username"></ion-input>
+        </ion-col>
+      </ion-row>
 
-      <!-- Apellido 2 -->
-      <ion-item>
-        <ion-label position="floating">Apellido 2</ion-label>
-        <ion-input [(ngModel)]="nuevoMonitor.apellido2" name="apellido2" required></ion-input>
-      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-input placeholder="Primer apellido" [(ngModel)]="apellido1"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input placeholder="Contraseña" type="password" [(ngModel)]="password"></ion-input>
+        </ion-col>
+      </ion-row>
 
-      <ion-item>
-        <ion-label position="floating">DNI</ion-label>
-        <ion-input [(ngModel)]="nuevoMonitor.dni" name="dni" required></ion-input>
-      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-input placeholder="Segundo apellido" [(ngModel)]="apellido2"></ion-input>
+        </ion-col>
+      </ion-row>
 
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input [(ngModel)]="nuevoMonitor.email" name="email" required></ion-input>
-      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-input placeholder="DNI" [(ngModel)]="dni"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input placeholder="Email" [(ngModel)]="email" type="email"></ion-input>
+        </ion-col>
+      </ion-row>
 
-      <ion-button expand="full" type="submit">Crear Monitor</ion-button>
-    </form>
-  </div>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="CrearMonitor()">Registrar Monitor</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
 </ion-content>
-

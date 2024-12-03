@@ -1,31 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cliente } from '../modelos/Cliente'; // Asegúrate de tener el modelo Cliente
+import { Monitor } from '../modelos/Monitor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MonitorService {
 
+  private apiUrl = 'http://localhost:8080/cliente';  // URL del backend para crear un monitor
 
-  private apiUrl = 'http://localhost:8080/cliente'; // Asegúrate de tener esto configurado en environment.ts
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
-
-  getMonitores(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(`${this.apiUrl}/monitores`); // Llama a tu nuevo endpoint
+  // Método para obtener todos los monitores
+  getMonitores(): Observable<Monitor[]> {
+    return this.http.get<Monitor[]>(`${this.apiUrl}/monitores`);
   }
 
-  createMonitor(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.apiUrl, cliente);
-  }
-
-  updateMonitor(id: number, cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(`${this.apiUrl}/${id}`, cliente);
-  }
-
-  deleteMonitor(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  // Método para registrar un monitor
+  registrarMonitor(monitor: Monitor): Observable<Monitor> {
+    return this.http.post<Monitor>(this.apiUrl, monitor);  // Se manda el objeto monitor (que incluye usuarioDTO)
   }
 }
