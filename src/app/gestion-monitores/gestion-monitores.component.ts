@@ -18,7 +18,10 @@ import { Router } from '@angular/router';
 })
 export class GestionMonitoresComponent implements OnInit {
   monitores: Monitor[] = []; // Lista de monitores
+  monitorEditado: Monitor | null = null;
   nuevoMonitor: Monitor; // Objeto para el nuevo monitor
+  modoEdicion: boolean = false; // Variable para controlar el modo de edición
+
 
   nombre: string = '';
   apellido1: string = '';
@@ -76,4 +79,38 @@ export class GestionMonitoresComponent implements OnInit {
       rol: this.rol
     };
   }
-}  
+
+  
+
+  cargarDatosParaEditar(monitor: Monitor): void {
+    // Configurar el modo de edición
+    this.modoEdicion = true;
+    this.monitorEditado = { ...monitor }; // Clonar el monitor para evitar mutaciones no deseadas
+    this.nombre = monitor.nombre;
+    this.apellido1 = monitor.apellido1;
+    this.apellido2 = monitor.apellido2;
+    this.dni = monitor.dni;
+    this.email = monitor.email;
+    this.username = monitor.usuarioDTO.username;
+    this.password = ''; // Deja la contraseña vacía para no mostrarla
+  }
+
+  actualizarMonitor(): void {
+    if (this.monitorEditado) {
+      this.monitorEditado.nombre = this.nombre;
+      this.monitorEditado.apellido1 = this.apellido1;
+      this.monitorEditado.apellido2 = this.apellido2;
+      this.monitorEditado.dni = this.dni;
+      this.monitorEditado.email = this.email;
+      this.monitorEditado.usuarioDTO.username = this.username;
+      this.monitorEditado.usuarioDTO.password = this.password;
+
+      // Llamar al servicio para actualizar el monitor
+      this.monitorService.actualizarMonitor(this.monitorEditado).subscribe(() => {
+        this.obtenerMonitores();
+        this.modoEdicion = false; // Desactivar el modo edición
+        this.monitorEditado = null; // Limpiar la variable de monitor editado
+      });
+    }
+  }
+}

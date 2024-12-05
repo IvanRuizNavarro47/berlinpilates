@@ -8,6 +8,7 @@ import { Monitor } from '../modelos/Monitor';
 })
 export class MonitorService {
 
+
   private apiUrl = 'http://localhost:8080/cliente';  // URL del backend para crear un monitor
 
   constructor(private http: HttpClient) { }
@@ -21,4 +22,10 @@ export class MonitorService {
   registrarMonitor(monitor: Monitor): Observable<Monitor> {
     return this.http.post<Monitor>(this.apiUrl, monitor);  // Se manda el objeto monitor (que incluye usuarioDTO)
   }
+
+  // Método para editar un monitor
+  actualizarMonitor(monitor: Monitor): Observable<Monitor> {
+    return this.http.put<Monitor>(`${this.apiUrl}/${monitor.id}`, monitor);
+  }
 }
+

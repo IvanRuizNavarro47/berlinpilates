@@ -1,58 +1,61 @@
+<app-header></app-header>
+
 <ion-content>
-  <div class="monitor-list">
-    <h1>Lista de Monitores</h1>
-    <ion-list>
-      <ion-item *ngFor="let monitor of monitores">
-        <ion-label>
-          <h2>{{ monitor.nombre }} {{ monitor.apellido1 }} {{ monitor.apellido2 }}</h2>
-          <p>Email: {{ monitor.email }}</p>
-          <p>DNI: {{ monitor.dni }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
+  <table>
+    <tr *ngFor="let monitor of monitores">
+      <td>{{ monitor.nombre }}</td>
+      <td>{{ monitor.apellido1 }}</td>
+      <td>{{ monitor.apellido2 }}</td>
+      <td>{{ monitor.dni }}</td>
+      <td>{{ monitor.email }}</td>
+      <td>
+        <button (click)="cargarDatosParaEditar(monitor)">Editar</button>
+      </td>
+    </tr>
+  </table>
 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input placeholder="Nombre" [(ngModel)]="nombre"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input placeholder="Username" [(ngModel)]="username"></ion-input>
+      </ion-col>
+    </ion-row>
 
-  <ion-content>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-input placeholder="Nombre" [(ngModel)]="nombre"></ion-input>
-        </ion-col>
-        <ion-col>
-          <ion-input placeholder="Username" [(ngModel)]="username"></ion-input>
-        </ion-col>
-      </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input placeholder="Primer apellido" [(ngModel)]="apellido1"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input placeholder="Contraseña" type="password" [(ngModel)]="password"></ion-input>
+      </ion-col>
+    </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <ion-input placeholder="Primer apellido" [(ngModel)]="apellido1"></ion-input>
-        </ion-col>
-        <ion-col>
-          <ion-input placeholder="Contraseña" type="password" [(ngModel)]="password"></ion-input>
-        </ion-col>
-      </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input placeholder="Segundo apellido" [(ngModel)]="apellido2"></ion-input>
+      </ion-col>
+    </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <ion-input placeholder="Segundo apellido" [(ngModel)]="apellido2"></ion-input>
-        </ion-col>
-      </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input placeholder="DNI" [(ngModel)]="dni"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input placeholder="Email" [(ngModel)]="email" type="email"></ion-input>
+      </ion-col>
+    </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <ion-input placeholder="DNI" [(ngModel)]="dni"></ion-input>
-        </ion-col>
-        <ion-col>
-          <ion-input placeholder="Email" [(ngModel)]="email" type="email"></ion-input>
-        </ion-col>
-      </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="modoEdicion ? actualizarMonitor() : CrearMonitor()">
+          {{ modoEdicion ? 'Actualizar Monitor' : 'Registrar Monitor' }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-      <ion-row>
-        <ion-col>
-          <ion-button (click)="CrearMonitor()">Registrar Monitor</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-content>
+  <app-footer></app-footer>
 </ion-content>
