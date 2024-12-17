@@ -6,10 +6,13 @@
         <ion-item *ngIf="isUser" href="/clase">Clases</ion-item>
         <ion-item href="/instalaciones">Nuestras instalaciones</ion-item>
         <ion-item href="/noticias">Noticias</ion-item>
+        <ion-item href="/reseñas">Reseñas</ion-item>
+
 
         <ion-item *ngIf="isAdmin" href="/gestionCliente">Gestión de Clientes</ion-item>
         <ion-item *ngIf="isAdmin" href="/gestionClases">Gestión de Clases</ion-item>
         <ion-item *ngIf="isAdmin" href="/gestionMonitores">Gestión de Monitores</ion-item>
+
 
         <ion-item *ngIf="isMonitor" href="/monitor">Monitores</ion-item>
       </ng-container>

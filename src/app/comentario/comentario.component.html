@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="comentarios-form">
+    <h1 *ngIf="comentarioSeleccionado">Editar Comentario</h1>
+    <h1 *ngIf="!comentarioSeleccionado">Crear Comentario</h1>
+
+    <!-- Formulario para agregar o editar comentario -->
+    <form (ngSubmit)="guardarComentario()" #comentarioForm="ngForm">
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="comentarioTexto"
+          name="comentarioTexto"
+          id="comentarioTexto"
+          rows="5"
+          placeholder="Escribe tu comentario aquí..."
+          required
+          minlength="5"
+          class="comentario-textarea"
+        ></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="!comentarioForm.valid" class="btn-save">
+          {{ comentarioSeleccionado ? 'Guardar Cambios' : 'Guardar Comentario' }}
+        </button>
+        <button type="button" (click)="cancelarComentario()" class="btn-cancel">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="comentarios.length > 0" class="comentarios-list">
+    <h1>Comentarios</h1>
+
+    <!-- Mostrar la lista de comentarios guardados -->
+    <div *ngFor="let comentario of comentarios" class="comentario-card">
+      <p><strong>Comentario {{ comentario.id }}:</strong></p>
+      <p><strong>Contenido:</strong> {{ comentario.contenido }}</p>
+      <p><strong>Fecha:</strong> {{ comentario.fechaComentario | date: 'dd/MM/yyyy HH:mm' }}</p>
+      
+      <!-- Botones de editar y eliminar -->
+      <button (click)="seleccionarComentario(comentario)">Editar</button>
+      <button (click)="eliminarComentario(comentario.id)">Eliminar</button>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

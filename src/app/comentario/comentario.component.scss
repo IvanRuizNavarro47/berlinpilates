@@ -1,0 +1,122 @@
+/* Estilos generales del componente */
+.comentario-section {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Estilo del título principal */
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo de los mensajes de éxito y error */
+  .success-message, .error-message {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .success-message {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .error-message {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  /* Estilo del textarea */
+  textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo de los botones */
+  button {
+    padding: 12px 20px;
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:active {
+    background-color: #003f7d;
+  }
+  
+  button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  /* Estilos para la lista de comentarios */
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo de cada tarjeta de comentario */
+  .comentario-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comentario-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .comentario-card p:first-child {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  /* Responsividad para pantallas más pequeñas */
+  @media (max-width: 600px) {
+    .comentario-section {
+      padding: 15px;
+    }
+  
+    textarea {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+  
+    .comentario-card {
+      padding: 10px;
+    }
+  }
+
+  
+  

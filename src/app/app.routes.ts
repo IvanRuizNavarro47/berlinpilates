@@ -13,6 +13,7 @@ import { GestionClienteComponent } from './gestion-cliente/gestion-cliente.compo
 import { MaquinasComponent } from './maquinas/maquinas.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { GestionMonitoresComponent } from './gestion-monitores/gestion-monitores.component';
+import { ComentarioComponent } from './comentario/comentario.component';
 
 export const routes: Routes = [
   {path: 'home',component:HomePage,},
@@ -29,7 +30,9 @@ export const routes: Routes = [
   {path: 'gestionCliente', component: GestionClienteComponent },
   {path: 'maquinas',component:MaquinasComponent},
   {path: 'contacto',component:ContactoComponent},
-  {path: 'gestionMonitores', component:GestionMonitoresComponent}
+  {path: 'gestionMonitores', component:GestionMonitoresComponent},
+  {path: 'reseñas', component:ComentarioComponent}
+
 
 
 
