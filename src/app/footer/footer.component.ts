@@ -17,19 +17,34 @@ import { Router } from '@angular/router';
   standalone: true
 })
 export class FooterComponent implements OnInit {
-
   logueado: boolean = false;
+  isAdmin: boolean = false;
+  isUser: boolean = false;
+  isMonitor: boolean = false;
 
   constructor(private service: LoginService, private router: Router) {
     addIcons({ personOutline });
   }
 
   ngOnInit(): void {
+    // Verificar si el usuario está logueado
     this.logueado = this.service.logueado();
+
+    if (this.logueado) {
+      // Asignar roles específicos dependiendo del usuario logueado
+      this.isAdmin = this.service.isAdmin();
+      this.isUser = this.service.isUser();
+      this.isMonitor = this.service.isMonitor();
+    }
   }
 
   logout() {
     this.service.logout();
     this.router.navigate(['/login']);
+    // Reiniciar roles y logueado al cerrar sesión
+    this.logueado = false;
+    this.isAdmin = false;
+    this.isUser = false;
+    this.isMonitor = false;
   }
 }

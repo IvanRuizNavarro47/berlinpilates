@@ -8,10 +8,8 @@ export class Cliente{
   apellido2?:string;
   dni?:string;
   email?:string;
-  id_usuario?:number;
-  usuario?:Usuario;
+  username?: string;
+  password?: string;
+  };
 
 
-
-
-}

@@ -10,9 +10,10 @@ import { InstalacionesComponent } from './instalaciones/instalaciones.component'
 import { NoticiasComponent } from './noticias/noticias.component';
 import { GestionClaseComponent } from './gestion-clase/gestion-clase.component';
 import { GestionClienteComponent } from './gestion-cliente/gestion-cliente.component';
-import { GestionMonitorComponent } from './gestion-monitor/gestion-monitor.component';
 import { MaquinasComponent } from './maquinas/maquinas.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { GestionMonitoresComponent } from './gestion-monitores/gestion-monitores.component';
+import { ComentarioComponent } from './comentario/comentario.component';
 
 export const routes: Routes = [
   {path: 'home',component:HomePage,},
@@ -27,9 +28,11 @@ export const routes: Routes = [
   {path: 'noticias',component:NoticiasComponent},
   {path: 'gestionClase', component: GestionClaseComponent },
   {path: 'gestionCliente', component: GestionClienteComponent },
-  {path: 'gestionMonitor', component: GestionMonitorComponent },
   {path: 'maquinas',component:MaquinasComponent},
   {path: 'contacto',component:ContactoComponent},
+  {path: 'gestionMonitores', component:GestionMonitoresComponent},
+  {path: 'reseñas', component:ComentarioComponent}
+
 
 
 
