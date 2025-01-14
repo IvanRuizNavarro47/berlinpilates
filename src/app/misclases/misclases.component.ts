@@ -19,34 +19,23 @@ import { Clase } from '../modelos/Clase';
 })
 export class MisClasesComponent implements OnInit {
   clases: Clase[] = [];
+  error: string = '';
 
-  constructor(
-    private inscripcionesService: ClaseService
-  ) {}
+  constructor(private claseService: ClaseService) {}
 
   ngOnInit(): void {
-    this.getInscripcionesPorUsuario();  // Llamada al método para obtener las clases
+    this.cargarClasesInscritas();
   }
 
-  getInscripcionesPorUsuario(): void {
-    // Obtener el token del localStorage
-    const token = localStorage.getItem('token');
-    if (token) {
-      // Decodificar el token para obtener el username
-      const decodedToken: any = jwtDecode(token);
-      const username = decodedToken.tokenDataDTO?.username;  // Asegúrate de que el username esté en decodedToken
-
-      if (username) {
-        // Obtener las inscripciones del usuario usando el usuarioId
-        this.inscripcionesService.getInscripcionesPorUsuario(username).subscribe(
-          (clases) => {
-            this.clases = clases;
-          },
-          (error) => {
-            console.error('Error al obtener las clases:', error);
-          }
-        );
+  cargarClasesInscritas(): void {
+    this.claseService.getInscripcionesPorUsuario().subscribe({
+      next: (clases) => {
+        this.clases = clases;
+      },
+      error: (error) => {
+        console.error('Error al obtener las clases:', error);
+        this.error = 'Error al cargar las clases. Por favor, intente nuevamente.';
       }
-    }
+    });
   }
 }

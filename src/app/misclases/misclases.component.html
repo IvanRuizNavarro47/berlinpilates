@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="container">
+    <h2>Mis Clases</h2>
+    
+    <!-- Mensaje de error si existe -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <!-- Lista de clases -->
+    <div *ngIf="clases.length > 0">
+      <ion-list>
+        <ion-item *ngFor="let clase of clases">
+          <ion-label>
+            <p>{{ clase.tipoClase ? clase.tipoClase : 'No especificado' }}</p>
+            <p>{{ clase.descripcion }}</p>
+            <p>Capacidad: {{ clase.capacidadMaxima }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Mensaje cuando no hay clases -->
+    <div *ngIf="clases.length === 0 && !error" class="no-classes">
+      No estás inscrito en ninguna clase.
+    </div>
+  </div>
+</ion-content>

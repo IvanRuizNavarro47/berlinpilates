@@ -20,10 +20,16 @@ export class ClaseService {
     return this.http.get<Clase[]>(this.apiUrl);
   }
 
-  // Obtener las inscripciones del usuario
-  getInscripcionesPorUsuario(username: string): Observable<Clase[]> {
-    return this.http.get<Clase[]>(`${this.apiUrl}/usuario/${username}`);
-  }
+ // Método para obtener las inscripciones del usuario usando el token
+ getInscripcionesPorUsuario(): Observable<Clase[]> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get<Clase[]>(`${this.inscripcionesApiUrl}/usuario`, { headers });
+}
 
   // Unirse a una clase
   unirseClase(claseId: number): Observable<any> {
