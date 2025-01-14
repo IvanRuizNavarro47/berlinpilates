@@ -5,7 +5,7 @@ import {ClaseComponent} from "./clase/clase.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistroComponent} from "./registro/registro.component";
 import {ErrorComponent} from "./error/error.component";
-import { MisclasesComponent } from './misclases/misclases.component';
+import { MisClasesComponent } from './misclases/misclases.component';
 import { InstalacionesComponent } from './instalaciones/instalaciones.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { GestionClaseComponent } from './gestion-clase/gestion-clase.component';
@@ -22,7 +22,7 @@ export const routes: Routes = [
   {path: 'clase',component:ClaseComponent},
   {path: 'login',component:LoginComponent},
   {path: 'registro',component:RegistroComponent},
-  {path: 'misclases',component:MisclasesComponent},
+  {path: 'misclases',component:MisClasesComponent},
   {path: 'error',component:ErrorComponent},
   {path: 'instalaciones',component:InstalacionesComponent},
   {path: 'noticias',component:NoticiasComponent},

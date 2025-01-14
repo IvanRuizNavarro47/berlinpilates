@@ -1,22 +1,19 @@
-<!-- clase.component.html -->
+<app-header></app-header>
 
-  <app-header></app-header>
-
-  <div class="clases-container">
-    <div *ngIf="clases.length > 0">
-      <h2 class="clases-title">Listado de Clases</h2>
-      <ul class="clases-list">
-        <li *ngFor="let clase of clases" class="clase-item">
-          <p>{{ clase.tipoClase ? getTipoClaseAsString(clase.tipoClase) : 'No especificado' }}</p>
-          <p>{{ clase.descripcion }}</p>
-          <p>Capacidad máxima: {{ clase.capacidadMaxima }}</p>
-          <p>{{ clase.fecha }}</p>
-          <button (click)="onButtonClick(clase.id)">Unirme a la clase</button>
-        </li>
-      </ul>
-    </div>
-    <div *ngIf="clases.length === 0" class="no-clases-message">
-      <p>No hay clases disponibles actualmente.</p>
-    </div>
+<div class="clases-container">
+  <div *ngIf="clases.length > 0">
+    <h2 class="clases-title">Listado de Clases</h2>
+    <ul class="clases-list">
+      <li *ngFor="let clase of clases" class="clase-item">
+        <p>{{ clase.tipoClase ? clase.tipoClase : 'No especificado' }}</p>
+        <p>{{ clase.descripcion }}</p>
+        <p>Capacidad máxima: {{ clase.capacidadMaxima }}</p>
+        <p>{{ clase.fecha }}</p>
+        <button (click)="onButtonClick(clase.id)">Unirme a la clase</button>
+      </li>
+    </ul>
   </div>
-  
+  <div *ngIf="clases.length === 0" class="no-clases-message">
+    <p>No hay clases disponibles actualmente.</p>
+  </div>
+</div>

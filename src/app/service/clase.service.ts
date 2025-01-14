@@ -9,48 +9,35 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ClaseService {
+  private apiUrl = 'http://localhost:8080/clases'; // URL para las clases disponibles
+  private inscripcionesApiUrl = 'http://localhost:8080/api/inscripciones'; // URL para las inscripciones
 
-  private apiUrl = 'http://localhost:8080/clases'; // Asegúrate de tener esto configurado en environment.ts
+  constructor(private http: HttpClient, private loginService: LoginService) {}
 
-  constructor(private http: HttpClient, private loginService:LoginService) {}
 
-  obtenerPorFecha(fecha:string): Observable<Clase[]> {
-
-    const options = this.loginService.autorizarPeticion();
-
-    return this.http.get<Clase[]>(`${this.apiUrl}`+ '/fecha?fecha=' +fecha, options);
-  }
-
+  // Obtener todas las clases disponibles
   getAllClases(): Observable<Clase[]> {
     return this.http.get<Clase[]>(this.apiUrl);
   }
 
-  asitir(idClase:number): Observable<any>{
-    const options = this.loginService.autorizarPeticion();
-
-    return this.http.post(this.apiUrl+ "/join/" + idClase , [], options);
-
+  // Obtener las inscripciones del usuario
+  getInscripcionesPorUsuario(username: string): Observable<Clase[]> {
+    return this.http.get<Clase[]>(`${this.apiUrl}/usuario/${username}`);
   }
 
-
+  // Unirse a una clase
   unirseClase(claseId: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${claseId}/unirse`, {});
+    const options = this.loginService.autorizarPeticion(); // Asegúrate de pasar el token de autorización
+    return this.http.post(`${this.inscripcionesApiUrl}/inscribir?claseId=${claseId}`, {}, options);
   }
 
-  borrarse(idClase:number): Observable<any>{
-    const options = this.loginService.autorizarPeticion();
-
-    return this.http.post(this.apiUrl+ "/abandon/" + idClase , [], options);
-
+  // Abandonar una clase
+  abandonarClase(claseId: number): Observable<any> {
+    const options = this.loginService.autorizarPeticion(); // Asegúrate de pasar el token de autorización
+    return this.http.post(`${this.inscripcionesApiUrl}/abandonar?claseId=${claseId}`, {}, options);
   }
 
-  createClase(clase: Clase): Observable<Clase> {
-    return this.http.post<Clase>(`${this.apiUrl}/crear`, clase);
+  getUsuarioIdPorUsername(username: string): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/usuario-id/${username}`);
   }
-
-  deleteClase(claseId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${claseId}`);
-  }
-
-
 }
