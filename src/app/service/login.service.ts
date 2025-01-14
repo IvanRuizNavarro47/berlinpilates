@@ -41,6 +41,29 @@ export class LoginService {
     return !!(token && token != '');
   }
 
+
+
+  
+  // Nuevo método para obtener el ID del usuario del token
+  getUserId(): number | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      return decoded.tokenDataDTO?.id || null;
+    }
+    return null;
+  }
+
+  // Nuevo método para obtener el username del token
+  getUsername(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      return decoded.tokenDataDTO?.username || null;
+    }
+    return null;
+  }
+
     // Método para obtener el token
     getToken(): string | null {
       return localStorage.getItem('token');
