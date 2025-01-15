@@ -20,6 +20,7 @@ import { Clase } from '../modelos/Clase';
 export class MisClasesComponent implements OnInit {
   clases: Clase[] = [];
   error: string = '';
+  loading: boolean = false;
 
   constructor(private claseService: ClaseService) {}
 
@@ -37,5 +38,31 @@ export class MisClasesComponent implements OnInit {
         this.error = 'Error al cargar las clases. Por favor, intente nuevamente.';
       }
     });
+  }
+
+  abandonarClase(claseId: number): void {
+    if (confirm('¿Estás seguro de que deseas abandonar esta clase?')) {
+      this.loading = true;
+      this.error = '';
+
+      this.claseService.abandonarClase(claseId).subscribe({
+        next: (result) => {
+          if (result.success) {
+            // Remover la clase de la lista local
+            this.clases = this.clases.filter(clase => clase.id !== claseId);
+            // Opcional: mostrar mensaje de éxito
+            this.error = '';
+          }
+          this.loading = false;
+        },
+        error: (error) => {
+          console.error('Error al abandonar la clase:', error);
+          this.error = error.message || 'Error al abandonar la clase.';
+          // Recargar las clases para asegurar la sincronización
+          this.cargarClasesInscritas();
+          this.loading = false;
+        }
+      });
+    }
   }
 }
