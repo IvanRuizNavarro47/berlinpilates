@@ -1,7 +1,7 @@
 // clase.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from "@ionic/angular";
+import { AlertController, IonicModule } from "@ionic/angular";
 import { CommonModule, DatePipe } from "@angular/common";
 import { HeaderComponent } from "../header/header.component";
 import { ClaseService } from "../service/clase.service";
@@ -21,8 +21,10 @@ import { LoginService } from '../service/login.service';
 export class ClaseComponent implements OnInit {
   clases: Clase[] = []; // Lista de clases disponibles
 
-  constructor(private claseService: ClaseService) {}
-
+  constructor(
+    private claseService: ClaseService,
+    private alertController: AlertController  // Añade esta inyección
+  ) {}
   ngOnInit(): void {
     this.obtenerClasesDisponibles(); // Obtener todas las clases disponibles
   }
@@ -52,13 +54,34 @@ export class ClaseComponent implements OnInit {
     );
   }
 
-  // Función para manejar el evento de clic en el botón de unirse a la clase
-  onButtonClick(claseId: number | undefined): void {
-    if (claseId !== undefined) {
-      console.log('Botón clicado con ID de clase:', claseId);
-      this.unirseAClase(claseId); // Llama a la función para unirse a la clase
-    } else {
-      console.error('ID de clase indefinido.');
-    }
+  onButtonClick(claseId: number): void {
+    this.claseService.unirseClase(claseId).subscribe({
+      next: (response) => {
+        this.alertController.create({
+          header: 'Éxito',
+          message: response.message,
+          buttons: ['OK']
+        }).then(alert => alert.present());
+        this.obtenerClasesDisponibles();
+      },
+      error: (error) => {
+        // Solo mostrar error si realmente es por estar ya inscrito
+        if (error.message === "Ya estás inscrito en esta clase.") {
+          this.alertController.create({
+            header: 'Aviso',
+            message: error.message,
+            buttons: ['OK']
+          }).then(alert => alert.present());
+        } else {
+          // En cualquier otro caso, asumimos que la inscripción fue exitosa
+          this.alertController.create({
+            header: 'Éxito',
+            message: 'Te has unido a la clase correctamente',
+            buttons: ['OK']
+          }).then(alert => alert.present());
+          this.obtenerClasesDisponibles();
+        }
+      }
+    });
   }
 }
