@@ -1,90 +1,114 @@
 <ion-content class="ion-padding">
-  <ion-grid class="ion-no-padding" fullscreen>
-    <ion-row class="ion-no-padding">
-      <ion-col size="12" size-md="8" size-lg="6">
-        <ion-card>
+  <ion-grid class="ion-justify-content-center">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="10" size-lg="8">
+        <ion-card class="registro-card">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">REGISTRO DE USUARIO</ion-card-title>
+          </ion-card-header>
 
           <ion-card-content>
+            <form [formGroup]="registroForm" (ngSubmit)="completarRegistro()">
+              <ion-row>
+                <!-- Columna Datos Cliente -->
+                <ion-col size="12" size-md="6">
+                  <div class="section-title ion-margin-bottom">
+                    <ion-text color="primary"><strong>DATOS CLIENTE</strong></ion-text>
+                  </div>
 
+                  <!-- Nombre -->
+                  <ion-item lines="none">
+                    <ion-label position="floating">Nombre</ion-label>
+                    <ion-input formControlName="nombre" type="text">
+                      <ion-icon slot="end" name="person-outline"></ion-icon>
+                    </ion-input>
+                  </ion-item>
+                  <div class="error-message" *ngIf="hasError('nombre')">
+                    {{ getErrorMessage('nombre') }}
+                  </div>
 
-            <ion-row style="padding-top: 10px">
-              <ion-col>
-                <ion-card-subtitle style="text-align: center; padding-right: 30px;"><b><u>DATOS CLIENTE</u> </b></ion-card-subtitle>
-              </ion-col>
-              <ion-col>
-                <ion-card-subtitle style="text-align: center; padding-left: 30px;"><b><u>DATOS USUARIO</u></b></ion-card-subtitle>
-              </ion-col>
-            </ion-row>
+                  <!-- Primer Apellido -->
+                  <ion-item lines="none">
+                    <ion-label position="floating">Primer Apellido</ion-label>
+                    <ion-input formControlName="apellido1" type="text">
+                      <ion-icon slot="end" name="person"></ion-icon>
+                    </ion-input>
+                  </ion-item>
+                  <div class="error-message" *ngIf="hasError('apellido1')">
+                    {{ getErrorMessage('apellido1') }}
+                  </div>
 
-            <ion-row >
-                <ion-col class="separador">
-                  <ion-input placeholder="Nombre" [(ngModel)]="nombre">
-                    <ion-icon slot="end" name="person-outline" aria-hidden="true"></ion-icon>
-                  </ion-input>
+                  <!-- Segundo Apellido -->
+                  <ion-item lines="none">
+                    <ion-label position="floating">Segundo Apellido</ion-label>
+                    <ion-input formControlName="apellido2" type="text">
+                      <ion-icon slot="end" name="person"></ion-icon>
+                    </ion-input>
+                  </ion-item>
+                  <div class="error-message" *ngIf="hasError('apellido2')">
+                    {{ getErrorMessage('apellido2') }}
+                  </div>
+
+                  <!-- DNI -->
+                  <ion-item lines="none">
+                    <ion-label position="floating">DNI</ion-label>
+                    <ion-input formControlName="dni" type="text">
+                      <ion-icon slot="end" name="id-card-outline"></ion-icon>
+                    </ion-input>
+                  </ion-item>
+                  <div class="error-message" *ngIf="hasError('dni')">
+                    {{ getErrorMessage('dni') }}
+                  </div>
+
+                  <!-- Email -->
+                  <ion-item lines="none">
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input formControlName="email" type="email"></ion-input>
+                  </ion-item>
+                  <div class="error-message" *ngIf="hasError('email')">
+                    {{ getErrorMessage('email') }}
+                  </div>
                 </ion-col>
-              <ion-col class="left"></ion-col>
+
+                <!-- Columna Datos Usuario -->
+                <ion-col size="12" size-md="6">
+                  <div class="section-title ion-margin-bottom">
+                    <ion-text color="primary"><strong>DATOS USUARIO</strong></ion-text>
+                  </div>
+
+                  <!-- Username -->
+                  <ion-item lines="none">
+                    <ion-label position="floating">Username</ion-label>
+                    <ion-input formControlName="username" type="text">
+                      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+                    </ion-input>
+                  </ion-item>
+                  <div class="error-message" *ngIf="hasError('username')">
+                    {{ getErrorMessage('username') }}
+                  </div>
+
+                  <!-- Password -->
+                  <ion-item lines="none">
+                    <ion-label position="floating">Contraseña</ion-label>
+                    <ion-input formControlName="password" type="password">
+                      <ion-icon slot="start" name="key-outline"></ion-icon>
+                    </ion-input>
+                  </ion-item>
+                  <div class="error-message" *ngIf="hasError('password')">
+                    {{ getErrorMessage('password') }}
+                  </div>
+                </ion-col>
               </ion-row>
 
-
-            <ion-row>
-              <ion-col class="separador">
-                <ion-input placeholder="Primer apellido" [(ngModel)]="apellido1">
-                  <ion-icon slot="end" name="person" aria-hidden="true"></ion-icon>
-                </ion-input>
-              </ion-col>
-
-
-
-
-              <ion-col class="left">
-                <ion-input placeholder="Username" [(ngModel)]="username">
-                  <ion-icon slot="start" name="person-circle-outline" aria-hidden="true"></ion-icon>
-                </ion-input>
-              </ion-col>
-            </ion-row>
-
-            
-            <ion-row >
-              <ion-col class="separador">
-                <ion-input placeholder="Segundo apellido" [(ngModel)]="apellido2">
-                  <ion-icon slot="end" name="person" aria-hidden="true"></ion-icon>
-                </ion-input>
-              </ion-col>
-            <ion-col class="left"></ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col class="separador">
-                <ion-input placeholder="DNI" [(ngModel)]="dni">
-                  <ion-icon slot="end" name="id-card-outline" aria-hidden="true"></ion-icon>
-                </ion-input>
-              </ion-col>
-              <ion-col class="left">
-                <ion-input placeholder="Contraseña" type="password" [(ngModel)]="password">
-                  <ion-icon slot="start" name="key-outline" aria-hidden="true"></ion-icon>
-                </ion-input>
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col class="separador">
-                <ion-input placeholder="email" [(ngModel)]="email" type="email">
-                </ion-input>
-              </ion-col>
-              <ion-col class="left"></ion-col>
-            </ion-row>
-
-
-
-
-
-
-
-
-
-            <ion-row>
-              <ion-button (click)="completarRegistro()">Completar Registro</ion-button>
-            </ion-row>
+              <!-- Botón de registro -->
+              <ion-row class="ion-margin-top">
+                <ion-col>
+                  <ion-row>
+                    <ion-button expand="full" (click)="completarRegistro()">Completar Registro</ion-button>
+                  </ion-row>                  
+                </ion-col>
+              </ion-row>
+            </form>
           </ion-card-content>
         </ion-card>
       </ion-col>

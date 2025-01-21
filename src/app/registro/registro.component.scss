@@ -1,99 +1,66 @@
+.registro-card {
+  margin: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+.section-title {
+  padding: 8px 0;
+  margin-bottom: 16px;
+  text-align: center;
+  border-bottom: 2px solid var(--ion-color-primary);
+}
 
-ion-content {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ion-item {
+  --background: transparent;
+  --border-color: var(--ion-color-medium);
+  --border-radius: 4px;
+  --padding-start: 0;
+  margin-bottom: 8px;
+
+  &.item-has-focus {
+    --border-color: var(--ion-color-primary);
   }
-  
-  ion-grid{
-    background-image: url("https://imagenes.heraldo.es/files/image_1920_1080/uploads/imagenes/2023/03/11/mejores-ejercicios-pilates-ganar-masa-muscular.jpeg");
-  
+
+  &.ion-invalid.ion-touched {
+    --border-color: var(--ion-color-danger);
   }
-  
-  .logo {
-    margin: auto;
-    display: block;
-  }
-  
-  /* Estilo base para pantallas más pequeñas o iguales a 600px */
-  .logo {
-    width: 100%;
-  }
-  
-  /* Media query para pantallas más grandes que 600px */
-  @media (min-width: 601px) {
-    .logo {
-      width: 50%; /* Puedes ajustar este valor según tus necesidades */
-    }
-  }
-  
-  /* Media query para pantallas más grandes que 1200px */
-  @media (min-width: 1201px) {
-    .logo {
-      width: 30%; /* Puedes ajustar este valor según tus necesidades */
-    }
-  }
-  
-  /* login.component.scss */
-  ion-card {
-    margin: 10px; /* Espaciado externo de la tarjeta */
-    padding: 20px; /* Espaciado interno de la tarjeta */
-    max-width: 500px; /* Ancho máximo de la tarjeta */
-    width: 100%; /* Hace que la tarjeta ocupe all el ancho disponible */
-    box-sizing: border-box; /* Incluye los márgenes y paddings en el tamaño total */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra el contenido horizontalmente */
-  }
-  
-  ion-input{
-    text-align: center;
-    margin-top: 10px;
-  
-  }
-  
-  ion-button{
-    margin-top: 30px;
-    width: 100%;
-    color: white;
-  }
-  
-  
+}
+
+ion-input {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  margin-bottom: 4px;
+}
+
+.error-message {
+  color: var(--ion-color-danger);
+  font-size: 12px;
+  margin: 4px 0 12px 16px;
+  min-height: 15px;
+}
+
+ion-button {
+  margin: 16px 0;
+  --border-radius: 8px;
+}
+
+// Estilos para los inputs inválidos
+ion-item.ion-invalid.ion-touched {
+  --highlight-background: var(--ion-color-danger);
+}
+
+// Media queries para responsive
+@media (max-width: 768px) {
   ion-grid {
-    height: 100%;
+    padding: 0;
   }
   
-  ion-row {
-    display: flex;
-    justify-content: center; /* Centra la tarjeta horizontalmente */
-    align-items: center; /* Centra la tarjeta verticalmente */
-    height: 100%;
+  .registro-card {
+    margin: 8px;
   }
-  
-  
   
   ion-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1500px; /* Ancho máximo de la tarjeta */
-    width: 100%; /* Hace que la tarjeta ocupe todo el ancho disponible */
+    padding: 8px;
   }
-  
-  ion-col.separador{
-    margin: auto;
-    border-right: solid 1pt;
-    border-right-color: #0d6891ff;
-    padding-right: 20px;
-  }
-  
-  ion-col.left{
-    padding-left: 20px;
-  }
-  
-  ion-input{
-    text-align: center;
-  }
-  
+}
