@@ -8,13 +8,14 @@ import { ClaseService } from '../service/clase.service';
 import { LoginService } from '../service/login.service';
 import { Router } from '@angular/router';
 import { Clase } from '../modelos/Clase';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
   selector: 'app-misclases',
   templateUrl: './misclases.component.html',
   standalone: true,
-  imports: [IonicModule, CommonModule, HeaderComponent, FormsModule],
+  imports: [IonicModule, CommonModule, HeaderComponent, FormsModule, FooterComponent],
   styleUrls: ['./misclases.component.scss'],
 })
 export class MisClasesComponent implements OnInit {
