@@ -36,7 +36,7 @@ html, body {
   left: 50%; /* Centra horizontalmente */
   transform: translate(-50%, -50%); /* Centra el título */
   font-family: 'Courier New', Courier, monospace;
-  font-size: 5vw; /* Adaptativo según el ancho de la pantalla */
+  font-size: 3.75vw; /* Adaptativo según el ancho de la pantalla */
   color: rgb(51, 148, 148); /* Color del texto */
   z-index: 1; /* Asegúrate de que esté por encima de la imagen */
 }
