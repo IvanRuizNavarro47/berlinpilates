@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<div *ngIf="usuarios.length > 0">
+  <div class="card-container">
+    <div *ngFor="let username of usuarios" class="card">
+      <h3>{{ username }}</h3>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="usuarios.length === 0">
+  <p>No se encontraron usuarios.</p>
+</div>
+
+<app-footer></app-footer>
