@@ -1,0 +1,43 @@
+/* Contenedor para las tarjetas */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  /* Estilo de cada tarjeta */
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;  /* Asegura que el efecto no se salga de los bordes */
+  }
+  
+  /* Título dentro de la tarjeta */
+  .card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Efecto hover para las tarjetas */
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f4f4f4; /* Cambio de color de fondo */
+  }
+  
+  /* Animación para el texto cuando pasamos el ratón */
+  .card:hover h3 {
+    transform: translateX(10px); /* Deslizar el texto a la derecha */
+    color: #007BFF; /* Cambiar color del texto al pasar el ratón */
+  }
+  

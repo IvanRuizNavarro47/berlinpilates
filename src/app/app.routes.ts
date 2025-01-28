@@ -12,6 +12,7 @@ import { MaquinasComponent } from './maquinas/maquinas.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { GestionMonitoresComponent } from './gestion-monitores/gestion-monitores.component';
 import { ComentarioComponent } from './comentario/comentario.component';
+import { GestionClientesComponent } from './gestion-clientes/gestion-clientes.component';
 
 export const routes: Routes = [
   {path: 'home',component:HomePage,},
@@ -26,6 +27,7 @@ export const routes: Routes = [
   {path: 'noticias',component:NoticiasComponent},
   {path: 'maquinas',component:MaquinasComponent},
   {path: 'contacto',component:ContactoComponent},
+  {path: 'gestionCliente',component:GestionClientesComponent},
   {path: 'gestionMonitores', component:GestionMonitoresComponent},
   {path: 'reseñas', component:ComentarioComponent}
 
