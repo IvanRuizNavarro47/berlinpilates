@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { jwtDecode } from 'jwt-decode';
@@ -23,7 +23,7 @@ export class MisClasesComponent implements OnInit {
   error: string = '';
   loading: boolean = false;
 
-  constructor(private claseService: ClaseService) {}
+  constructor(private claseService: ClaseService, private alertController: AlertController) {}
 
   ngOnInit(): void {
     this.cargarClasesInscritas();
@@ -41,29 +41,48 @@ export class MisClasesComponent implements OnInit {
     });
   }
 
-  abandonarClase(claseId: number): void {
-    if (confirm('¿Estás seguro de que deseas abandonar esta clase?')) {
-      this.loading = true;
-      this.error = '';
-
-      this.claseService.abandonarClase(claseId).subscribe({
-        next: (result) => {
-          if (result.success) {
-            // Remover la clase de la lista local
-            this.clases = this.clases.filter(clase => clase.id !== claseId);
-            // Opcional: mostrar mensaje de éxito
-            this.error = '';
+  async abandonarClase(claseId: number): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Confirmación',
+      message: '¿Estás seguro de que deseas abandonar esta clase?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Abandono de clase cancelado');
           }
-          this.loading = false;
         },
-        error: (error) => {
-          console.error('Error al abandonar la clase:', error);
-          this.error = error.message || 'Error al abandonar la clase.';
-          // Recargar las clases para asegurar la sincronización
-          this.cargarClasesInscritas();
-          this.loading = false;
+        {
+          text: 'Abandonar',
+          cssClass: 'danger',  // Cambia el color a rojo para indicar eliminación
+          handler: () => {
+            this.loading = true;
+            this.error = '';
+
+            this.claseService.abandonarClase(claseId).subscribe({
+              next: (result) => {
+                if (result.success) {
+                  // Remover la clase de la lista local
+                  this.clases = this.clases.filter(clase => clase.id !== claseId);
+                  this.error = '';
+                }
+                this.loading = false;
+              },
+              error: (error) => {
+                console.error('Error al abandonar la clase:', error);
+                this.error = error.message || 'Error al abandonar la clase.';
+                // Recargar las clases para asegurar la sincronización
+                this.cargarClasesInscritas();
+                this.loading = false;
+              }
+            });
+          }
         }
-      });
-    }
+      ]
+    });
+
+    await alert.present();
   }
 }

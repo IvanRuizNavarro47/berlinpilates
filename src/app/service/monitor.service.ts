@@ -27,5 +27,10 @@ export class MonitorService {
   actualizarMonitor(monitor: Monitor): Observable<Monitor> {
     return this.http.put<Monitor>(`${this.apiUrl}/${monitor.id}`, monitor);
   }
+
+  eliminarMonitor(id: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8080/cliente/${id}`);
+  }
+  
 }
 
