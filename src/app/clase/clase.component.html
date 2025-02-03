@@ -5,16 +5,18 @@
     <h2 class="clases-title">Listado de Clases</h2>
     <ul class="clases-list">
       <li *ngFor="let clase of clases" class="clase-item">
-        <p>{{ clase.tipoClase ? clase.tipoClase : 'No especificado' }}</p>
-        <p>{{ clase.descripcion }}</p>
-        <p>Capacidad máxima: {{ clase.capacidadMaxima }}</p>
-        <p>{{ clase.fecha }}</p>
-        <button (click)="onButtonClick(clase.id!)">Unirme a la clase</button>      
+        <div class="clase-info">
+          <p>{{ clase.tipoClase ? clase.tipoClase : 'No especificado' }}</p>
+          <p>{{ clase.descripcion }}</p>
+          <p>Capacidad máxima: {{ clase.capacidadMaxima }}</p>
+          <p>{{ clase.fecha }}</p>
+        </div>
+        <!-- Asegúrate de que el botón esté bien posicionado -->
+        <button (click)="onButtonClick(clase.id!)" class="unirme-btn">Unirme a la clase</button>      
       </li>
     </ul>
   </div>
   <div *ngIf="clases.length === 0" class="no-clases-message">
     <p>No hay clases disponibles actualmente.</p>
   </div>
-  
 </div>

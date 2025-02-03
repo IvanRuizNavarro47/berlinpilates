@@ -1,49 +1,100 @@
-/* clase.component.scss */
-
+/* Contenedor principal de clases */
 .clases-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   padding: 20px;
+  background-color: #1e1e1e; /* Fondo oscuro */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  color: #ddd; /* Color de texto gris claro */
 }
 
+/* Título de la lista de clases */
 .clases-title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 15px;
+  color: #1abc9c; /* Turquesa para el título */
+  margin-bottom: 20px;
 }
 
+/* Lista de clases */
 .clases-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .clase-item {
-  background-color: #0071b3;
-  border-radius: 8px;
-  padding: 15px;
+  background-color: #292929; /* Fondo oscuro para cada clase */
   margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.clase-item p {
-  margin: 5px 0;
+.clase-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.clase-info {
+  max-width: 75%;
+}
+
+.clase-tipo {
   font-size: 16px;
+  font-weight: bold;
+  color: #1abc9c; /* Turquesa para el tipo de clase */
 }
 
-/* Estilos adicionales para asegurar que el botón sea clicable */
-button {
-  position: relative;
-  z-index: 1000;
-  pointer-events: auto;
-  visibility: visible;
-  display: block;
+.clase-descripcion {
+  font-size: 14px;
+  color: #ccc; /* Gris claro */
+  margin: 10px 0;
 }
 
+.clase-capacidad {
+  font-size: 14px;
+  color: #bbb; /* Gris más claro para la capacidad */
+}
+
+.clase-fecha {
+  font-size: 12px;
+  color: #888; /* Gris aún más claro para la fecha */
+}
+
+/* Estilo para el botón "Unirme a la clase" */
+.unirme-btn {
+  padding: 10px 15px;
+  background-color: #1abc9c; /* Fondo turquesa */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 10; /* Asegurarnos de que el botón tenga un índice z alto */
+  position: relative; /* Asegura que el botón no quede tapado por otros elementos */
+}
+
+.unirme-btn:hover {
+  background-color: #16a085; /* Turquesa más oscuro en hover */
+  transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+}
+
+.unirme-btn:active {
+  background-color: #3e8e41; /* Turquesa más oscuro al hacer clic */
+}
+
+/* Mensaje cuando no hay clases disponibles */
 .no-clases-message {
+  text-align: center;
   font-size: 18px;
-  color: #777;
-  margin-top: auto;
+  color: #ddd; /* Texto gris claro */
+  padding: 20px;
+  background-color: #333; /* Fondo oscuro */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
