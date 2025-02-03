@@ -7,6 +7,8 @@ import { Monitor } from '../modelos/Monitor';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';  // Importar el AlertController
+
 
 @Component({
   selector: 'app-gestion-monitores',
@@ -21,6 +23,7 @@ export class GestionMonitoresComponent implements OnInit {
   monitorEditado: Monitor | null = null;
   nuevoMonitor: Monitor; // Objeto para el nuevo monitor
   modoEdicion: boolean = false; // Variable para controlar el modo de edición
+  
 
 
   nombre: string = '';
@@ -32,10 +35,12 @@ export class GestionMonitoresComponent implements OnInit {
   password: string = '';
   rol: string = 'MONITOR'; // Valor predeterminado para rol MONITOR
 
-  constructor(private monitorService: MonitorService, private router: Router) {
+  constructor(private monitorService: MonitorService,    private alertController: AlertController, // Inyectar el AlertController
+    private router: Router) {
     // Inicializar nuevoMonitor con todos sus campos
     this.nuevoMonitor = new Monitor();
-  }
+    
+  } 
 
   ngOnInit(): void {
     this.obtenerMonitores();
@@ -58,11 +63,12 @@ export class GestionMonitoresComponent implements OnInit {
       next: (v) => console.log(v),
       error: (e) => console.error(e),
       complete: () => {
-        this.obtenerMonitores(); // Volver a obtener la lista de monitores actualizada
-        this.router.navigate(['/gestion-monitores']); // Redirigir a la misma página
+        this.obtenerMonitores(); // Recargar la lista de monitores
+        this.limpiarFormulario(); // Limpiar el formulario
       }
     });
   }
+  
 
   rellenarDatos() {
     // Asignar los valores del formulario al objeto nuevoMonitor
@@ -95,7 +101,7 @@ export class GestionMonitoresComponent implements OnInit {
     this.password = ''; // Deja la contraseña vacía para no mostrarla
   }
 
-  actualizarMonitor(): void {
+  actualizarMonitor() {
     if (this.monitorEditado) {
       this.monitorEditado.nombre = this.nombre;
       this.monitorEditado.apellido1 = this.apellido1;
@@ -104,13 +110,56 @@ export class GestionMonitoresComponent implements OnInit {
       this.monitorEditado.email = this.email;
       this.monitorEditado.usuarioDTO.username = this.username;
       this.monitorEditado.usuarioDTO.password = this.password;
-
-      // Llamar al servicio para actualizar el monitor
+  
       this.monitorService.actualizarMonitor(this.monitorEditado).subscribe(() => {
-        this.obtenerMonitores();
-        this.modoEdicion = false; // Desactivar el modo edición
-        this.monitorEditado = null; // Limpiar la variable de monitor editado
+        this.obtenerMonitores(); // Recargar la lista de monitores
+        this.limpiarFormulario(); // Limpiar el formulario
       });
     }
+  }
+  
+
+  limpiarFormulario() {
+    this.nombre = '';
+    this.apellido1 = '';
+    this.apellido2 = '';
+    this.dni = '';
+    this.email = '';
+    this.username = '';
+    this.password = '';
+    this.modoEdicion = false;
+    this.monitorEditado = null;
+  }
+  
+
+  async eliminarMonitor(id: number) {
+    const alert = await this.alertController.create({
+      header: 'Confirmación',
+      message: '¿Estás seguro de que deseas eliminar este monitor?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Eliminación cancelada');
+          }
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            this.monitorService.eliminarMonitor(id).subscribe({
+              next: () => {
+                console.log('Monitor eliminado con éxito');
+                this.obtenerMonitores(); // Recargar la lista después de eliminar
+              },
+              error: (e) => console.error('Error al eliminar el monitor:', e)
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

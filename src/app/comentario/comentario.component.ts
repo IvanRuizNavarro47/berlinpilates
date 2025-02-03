@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ComentarioService } from '../service/comentario.service';
 import { Comentario } from '../modelos/Comentario'; // Asegúrate de importar el modelo Comentario
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { HeaderComponent } from '../header/header.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../footer/footer.component';
@@ -19,7 +19,7 @@ export class ComentarioComponent implements OnInit {
   comentarios: Comentario[] = []; // Lista de comentarios
   comentarioSeleccionado: Comentario | null = null; // Comentario seleccionado para editar
 
-  constructor(private comentarioService: ComentarioService) {}
+  constructor(private comentarioService: ComentarioService, private alertController: AlertController) {}
 
   ngOnInit(): void {
     this.obtenerComentarios(); // Obtener los comentarios cuando el componente se inicializa
@@ -93,20 +93,42 @@ export class ComentarioComponent implements OnInit {
     this.comentarioTexto = comentario.contenido; // Llenar el campo de texto con el contenido actual
   }
 
-  // Función para eliminar un comentario
-  eliminarComentario(id: number): void {
-    if (confirm('¿Estás seguro de que deseas eliminar este comentario?')) {
-      this.comentarioService.eliminarComentario(id).subscribe(
-        () => {
-          // Filtrar el comentario eliminado de la lista
-          this.comentarios = this.comentarios.filter(comentario => comentario.id !== id);
-        },
-        (error) => {
-          console.error('Error al eliminar el comentario', error);
+// Función para eliminar un comentario
+async eliminarComentario(id: number): Promise<void> {
+  const alert = await this.alertController.create({
+    header: 'Confirmación',
+    message: '¿Estás seguro de que deseas eliminar este comentario?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Eliminación cancelada');
         }
-      );
-    }
-  }
+      },
+      {
+        text: 'Eliminar',
+        cssClass: 'danger',  // Cambia el color a rojo para indicar eliminación
+        handler: () => {
+          this.comentarioService.eliminarComentario(id).subscribe(
+            () => {
+              // Filtrar el comentario eliminado de la lista
+              this.comentarios = this.comentarios.filter(comentario => comentario.id !== id);
+              console.log('Comentario eliminado con éxito');
+            },
+            (error) => {
+              console.error('Error al eliminar el comentario:', error);
+            }
+          );
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
 
   // Función para cancelar la edición o creación del comentario
   cancelarComentario(): void {

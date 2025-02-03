@@ -10,6 +10,7 @@
       <td>{{ monitor.email }}</td>
       <td>
         <button (click)="cargarDatosParaEditar(monitor)">Editar</button>
+        <button class="eliminar" (click)="eliminarMonitor(monitor.id)">Eliminar</button>
       </td>
     </tr>
   </table>

@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <ion-content>
   <div class="monitor-grid">
     <h1 class="titulo">Lista de Monitores</h1>
@@ -8,17 +9,14 @@
           <ion-card class="card-zoom">
             <img src="https://cienciasdeportivas.com/wp-content/uploads/monitor-de-pilates-coaching-deportivo.jpg" content="width=device-width, initial-scale=1.0">
             <ion-card-header>
-              <ion-card-title>{{ monitor.nombre }} {{ monitor.apellido1 }}</ion-card-title>
-              <ion-card-subtitle>{{ monitor.apellido2 }}</ion-card-subtitle>
+              <ion-card-title>{{ monitor.nombre }} </ion-card-title>
+              <ion-card-subtitle> {{ monitor.apellido1 }} {{ monitor.apellido2 }}</ion-card-subtitle>
             </ion-card-header>
-            <ion-card-content>
-              <p><ion-icon name="mail-outline"></ion-icon> {{ monitor.email }}</p>
-              <p><ion-icon name="card-outline"></ion-icon> {{ monitor.dni }}</p>
-            </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 </ion-content>
+
 <app-footer></app-footer>
