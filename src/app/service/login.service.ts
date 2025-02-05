@@ -108,6 +108,8 @@ export class LoginService {
     this.router.navigate(['login']);
   }
 
+  
+
   autorizarPeticion(){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

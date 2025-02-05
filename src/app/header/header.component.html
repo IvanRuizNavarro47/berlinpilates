@@ -25,6 +25,7 @@
   <ion-content>
     <ion-list>
       <ion-item *ngIf="!logueado" href="login">Login</ion-item>
+      <ion-item *ngIf="logueado">Bienvenido, {{ username }}!</ion-item>
       <ion-item *ngIf="logueado && isUser" href="misclases">Mis Clases</ion-item>
       <ion-item *ngIf="logueado" (click)="logout()">Logout</ion-item>
     </ion-list>
