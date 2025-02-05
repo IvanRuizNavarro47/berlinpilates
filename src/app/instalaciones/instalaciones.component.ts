@@ -13,6 +13,7 @@ import {
 } from '@ionic/angular/standalone';
 import {HeaderComponent} from "../header/header.component";
 import { FooterComponent } from '../footer/footer.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-instalaciones',
@@ -26,8 +27,12 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class InstalacionesComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
+
+  navigate(route: string) {
+    this.router.navigate([route]);
+  }
   ngOnInit() {}
 
 }

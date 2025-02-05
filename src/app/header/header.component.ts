@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
 
   logueado: boolean = false;
   userRole: string | null = null;
+  username: string | null = null;  // Variable para almacenar el nombre de usuario
+
 
   constructor(private service: LoginService, private router: Router) {
     addIcons({personOutline});
@@ -30,8 +32,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.logueado = this.service.logueado();
     this.userRole = this.getUserRole(); // Llamamos a getUserRole para asignar el rol cuando el componente se carga
+    this.username = this.getUsername();  // Llamamos al método getUsername para obtener el nombre de usuario
     console.log('Rol del usuario en ngOnInit:', this.userRole); // Para depurar el rol
   }
+
+  
 
   logout(): void {
     this.service.logout();
@@ -74,5 +79,21 @@ get isMonitor(): boolean {
   return this.userRole === 'MONITOR';
 }
 
+
+  // Método para obtener el nombre de usuario del token
+  getUsername(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      console.log('Token decodificado:', decoded);  // Verifica lo que hay dentro del token
+  
+      // Verificamos si el nombre de usuario está en tokenDataDTO
+      if (decoded.tokenDataDTO && decoded.tokenDataDTO.username) {
+        console.log('Nombre de usuario encontrado en tokenDataDTO:', decoded.tokenDataDTO.username);
+        return decoded.tokenDataDTO.username;
+      }
+    }
+    return null;
+  }
 
 }

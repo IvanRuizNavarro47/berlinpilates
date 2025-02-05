@@ -18,6 +18,7 @@ html, body {
   width: 100%;
   height: 400px; /* Ajustar la altura de la imagen de fondo */
   overflow: hidden; /* Evitar que el contenido se desborde */
+  animation: parallax 15s infinite linear; /* Animación de parallax */
 }
 
 .background-image {
@@ -39,6 +40,37 @@ html, body {
   font-size: 3.75vw; /* Adaptativo según el ancho de la pantalla */
   color: rgb(51, 148, 148); /* Color del texto */
   z-index: 1; /* Asegúrate de que esté por encima de la imagen */
+  animation: fadeIn 2s ease-out 0.5s forwards, slideUp 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 20%);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes parallax {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .contact-info {
@@ -51,10 +83,13 @@ html, body {
   width: 80%; /* Ajuste para pantallas más grandes */
   max-width: 600px; /* Para evitar que se extienda demasiado en pantallas grandes */
   font-family: 'Arial', sans-serif;
+  animation: fadeIn 1s ease-out 1s forwards;
 
   p {
     font-size: 1.2rem;
     margin: 10px 0;
+    opacity: 0;
+    animation: fadeInText 1s ease-out forwards;
   }
 
   a {
@@ -68,6 +103,15 @@ html, body {
   }
 }
 
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .map-container {
   margin-top: 20px;
   width: 100%;
@@ -76,6 +120,18 @@ html, body {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para el mapa */
+  animation: zoomIn 1s ease-out forwards;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 iframe {

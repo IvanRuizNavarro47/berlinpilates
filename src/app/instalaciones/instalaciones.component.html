@@ -8,13 +8,14 @@
       <h1 class="title">Nuestras instalaciones</h1>
     </div>
   </div>
-
+<br><br><br><br>
   <h2 class="centered-text">¿Qué te interesa saber?</h2>
-
+  <br><br><br><br>
   <div class="grid-container">
-    <ion-item href="/maquinas">Nuestras Máquinas</ion-item>
-    <ion-item href="/monitor">Monitores</ion-item>
-    <ion-item href="/contacto">Contacto & Info</ion-item>
+    <button class="btn" (click)="navigate('/maquinas')">Nuestras Máquinas</button>
+    <button class="btn" (click)="navigate('/monitor')">Monitores</button>
+    <button class="btn" (click)="navigate('/contacto')">Contacto & Info</button>
   </div>
-
+  
+  <app-footer></app-footer>
 </ion-content>
