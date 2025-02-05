@@ -104,7 +104,12 @@
               <ion-row class="ion-margin-top">
                 <ion-col>
                   <ion-row>
-                    <ion-button expand="full" (click)="completarRegistro()">Completar Registro</ion-button>
+                    <ion-button 
+                      expand="full" 
+                      (click)="completarRegistro()" 
+                      [disabled]="registroForm.invalid"> <!-- Botón desactivado si el formulario es inválido -->
+                      Completar Registro
+                    </ion-button>
                   </ion-row>                  
                 </ion-col>
               </ion-row>
