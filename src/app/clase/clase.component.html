@@ -12,7 +12,9 @@
           <p>{{ clase.fecha }}</p>
         </div>
         <!-- Asegúrate de que el botón esté bien posicionado -->
-        <button (click)="onButtonClick(clase.id!)" class="unirme-btn">Unirme a la clase</button>      
+        <button (click)="onButtonClick(clase.id!)" class="unirme-btn" [disabled]="clase.capacidadMaxima === 0">
+          {{ clase.capacidadMaxima === 0 ? 'No hay plazas' : 'Unirme a la clase' }}
+        </button>
       </li>
     </ul>
   </div>
