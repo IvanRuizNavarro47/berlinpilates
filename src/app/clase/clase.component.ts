@@ -54,34 +54,33 @@ export class ClaseComponent implements OnInit {
     );
   }
 
-  onButtonClick(claseId: number): void {
-    this.claseService.unirseClase(claseId).subscribe({
-      next: (response) => {
+  // En el componente
+onButtonClick(claseId: number): void {
+  this.claseService.unirseClase(claseId).subscribe({
+    next: (response) => {
+      this.alertController.create({
+        header: 'Éxito',
+        message: response.message,
+        buttons: ['OK']
+      }).then(alert => alert.present());
+      this.obtenerClasesDisponibles();
+    },
+    error: (error) => {
+      if (error.message === "Ya estás inscrito en esta clase.") {
+        this.alertController.create({
+          header: 'Aviso',
+          message: error.message,
+          buttons: ['OK']
+        }).then(alert => alert.present());
+      } else {
         this.alertController.create({
           header: 'Éxito',
-          message: response.message,
+          message: 'Te has unido a la clase correctamente',
           buttons: ['OK']
         }).then(alert => alert.present());
         this.obtenerClasesDisponibles();
-      },
-      error: (error) => {
-        // Solo mostrar error si realmente es por estar ya inscrito
-        if (error.message === "Ya estás inscrito en esta clase.") {
-          this.alertController.create({
-            header: 'Aviso',
-            message: error.message,
-            buttons: ['OK']
-          }).then(alert => alert.present());
-        } else {
-          // En cualquier otro caso, asumimos que la inscripción fue exitosa
-          this.alertController.create({
-            header: 'Éxito',
-            message: 'Te has unido a la clase correctamente',
-            buttons: ['OK']
-          }).then(alert => alert.present());
-          this.obtenerClasesDisponibles();
-        }
       }
-    });
-  }
+    }
+  });
+}
 }
